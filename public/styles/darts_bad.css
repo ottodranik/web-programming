@@ -1,0 +1,265 @@
+/* DARTS */
+
+.darts {
+  position: relative;
+  display: block;
+  z-index: 10;
+}
+
+.darts span, .darts div {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.darts .circle-outer {
+  display: block;
+  height: 500px;
+  width: 500px;
+  background-color: #000;
+}
+
+.darts .circle-outer-border {
+  top: 250px;
+  left: 250px;
+  display: block;
+  border: 1px solid #ccc;
+  height: 480px;
+  width: 480px;
+  transform: translate(-50%, -50%);
+}
+
+.darts .target {
+  top: 250px;
+  left: 250px;
+  display: block;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.darts .target-100 {
+  height: 20px;
+  width: 20px;
+  background-color: red;
+}
+
+.darts .target-50 {
+  height: 40px;
+  width: 40px;
+  background-color: green;
+}
+
+.darts .target-double {
+  height: 370px;
+  width: 370px;
+}
+.darts .target-double.__red {
+  transform: rotate(18deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.darts .target-single {
+  height: 350px;
+  width: 350px;
+}
+.darts .target-single.__black {
+  transform: rotate(18deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.darts .target-triple {
+  height: 235px;
+  width: 235px;
+}
+.darts .target-triple.__red {
+  transform: rotate(18deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.darts .target-single-inside {
+  height: 215px;
+  width: 215px;
+}
+.darts .target-single-inside.__black {
+  transform: rotate(18deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+}
+
+.target-sectors-cnt.small {
+  transform-origin: 0 0;
+  transform: scale(0.66);
+}
+
+.darts .sector {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform-origin: left bottom;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.darts .sector.sector-1 {
+  transform: rotate(9deg) skewY(108deg);
+}
+
+.darts .sector.sector-2 {
+  transform: rotate(45deg) skewY(108deg);
+}
+
+.darts .sector.sector-3 {
+  transform: rotate(81deg) skewY(108deg);
+}
+
+.darts .sector.sector-4 {
+  transform: rotate(117deg) skewY(108deg);
+}
+
+.darts .sector.sector-5 {
+  transform: rotate(153deg) skewY(108deg);
+}
+
+.darts .sector.sector-6 {
+  transform: rotate(189deg) skewY(108deg);
+}
+
+.darts .sector.sector-7 {
+  transform: rotate(225deg) skewY(108deg);
+}
+
+.darts .sector.sector-8 {
+  transform: rotate(261deg) skewY(108deg);
+}
+
+.darts .sector.sector-9 {
+  transform: rotate(297deg) skewY(108deg);
+}
+
+.darts .sector.sector-10 {
+  transform: rotate(333deg) skewY(108deg);
+}
+
+.__green .sector {
+  background-color: green;
+}
+
+.__red .sector {
+  background-color: red;
+}
+
+.__white .sector {
+  background-color: white;
+}
+
+.__black .sector {
+  background-color: black;
+}
+
+.darts .circle-text {
+  font-size: 40px;
+  color: #fff;
+  border-radius: 0;
+}
+
+.circle-text:nth-child(20) {
+  top: 10px;
+  left: 230px;
+}
+
+.circle-text:nth-child(19) {
+  top: 420px;
+  left: 165px;
+}
+
+.circle-text:nth-child(18) {
+  top: 50px;
+  left: 350px;
+}
+
+.circle-text:nth-child(17) {
+  top: 420px;
+  left: 285px;
+}
+
+.circle-text:nth-child(16) {
+  top: 350px;
+  left: 55px;
+}
+
+.circle-text:nth-child(15) {
+  top: 350px;
+  left: 395px;
+}
+
+.circle-text:nth-child(14) {
+  top: 160px;
+  left: 25px;
+}
+
+.circle-text:nth-child(13) {
+  top: 160px;
+  left: 425px;
+}
+
+.circle-text:nth-child(12) {
+  top: 50px;
+  left: 95px;
+}
+
+.circle-text:nth-child(11) {
+  top: 220px;
+  left: 20px;
+}
+
+.circle-text:nth-child(10) {
+  top: 285px;
+  left: 430px;
+}
+
+.circle-text:nth-child(9) {
+  top: 100px;
+  left: 70px;
+}
+
+.circle-text:nth-child(8) {
+  top: 285px;
+  left: 40px;
+}
+
+.circle-text:nth-child(7) {
+  top: 395px;
+  left: 120px;
+}
+
+.circle-text:nth-child(6) {
+  top: 220px;
+  left: 445px;
+}
+
+.circle-text:nth-child(5) {
+  top: 25px;
+  left: 175px;
+}
+
+.circle-text:nth-child(4) {
+  top: 100px;
+  left: 405px;
+}
+
+.circle-text:nth-child(3) {
+  top: 430px;
+  left: 240px;
+}
+
+.circle-text:nth-child(2) {
+  top: 390px;
+  left: 360px;
+}
+
+.circle-text:nth-child(1) {
+  top: 25px;
+  left: 305px;
+}

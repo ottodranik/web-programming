@@ -1,0 +1,21 @@
+<% if (books && books.length) { %>
+  <% books.forEach((item, index) => { %>
+    <div class="single-book-cnt">
+      <div
+        class="single-book_image"
+        style="background-image: url(<%= item.image || '/static/images/create_page_images_book.jpg' %>)"
+      ></div>
+      <div class="single-book_text">
+        <a class="single-book_link" title="<%= item.book_name %>" href="/book/<%= item.id %>">
+          <%= item.book_name %>
+        </a>
+        <div class="single-book_descr">Автор: <%= item.author_name %></div>
+        <div class="single-book_descr">Жанр: <%= item.genre_name %></div>
+        <div class="single-book_descr">Середня оцінка: <%= Math.floor(item.average_mark) %></div>
+        <% include ./book-controls.ejs %>
+      </div>
+    </div>
+  <% }) %>
+<% } else { %>
+  <span>Немає книг згідно запросу</span>
+<% } %>

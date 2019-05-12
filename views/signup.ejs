@@ -1,0 +1,57 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="login-cnt">
+        <h2>Форма реєстрації</h2>
+        <form id="signupForm" action="/auth/signup" name="signupForm" class="signup" method="POST" onSubmit="onSignup(event)">
+          <label>
+            <span class="field-label">Email:</span>
+            <input
+              title="Введіть email"
+              type="email"
+              name="email"
+              required
+              pattern="[A-Za-z]{1}.*"
+            >
+          </label>
+          <label>
+            <span class="field-label">Пароль:</span>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              onkeyup="checkPassword()"
+              required
+            >
+          </label>
+          <label>
+            <span class="field-label">Підтвердження пароля:</span>
+            <span class="field-input">
+              <input
+                id="password_confirm"
+                type="password"
+                name="password_confirm"
+                onkeyup="checkPassword()"
+                required
+              >
+              <span id="message"></span>
+            </span>
+          </label>
+          <div class="controls">
+            <button id="submit" type="submit">Зареєструватися</button>
+          </div>
+          <% if(message.text) { %>
+            <div class="msg <%= message.is_error ? 'error-msg' : '' %>">
+              <%= message.text %>
+            </div>
+          <% }%>
+          <div>
+            <a href="/signin">&#8592; Повернутися до авторизації.</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>
+<script type="text/javascript" src="static/js/auth.js"></script>

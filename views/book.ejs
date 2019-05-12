@@ -1,0 +1,27 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="main-left">
+        <section class="content">
+          <div class="book-header">
+            <h2 class="title">
+              <%= item.book_name %>
+            </h2>
+          </div>
+          <div class="book-description">Автор: <%= item.author_name %></div>
+          <div class="book-description">Жанр: <%= item.genre_name %></div>
+          <div class="description">Середня оцінка: <%= Math.floor(item.average_mark) %></div>
+          <div style="margin: 10px 0;">
+            <% include partials/book-controls.ejs %>
+          </div>
+          <div class="book-small-text">
+            Опис:<br>
+            <%= item.short_description %>
+          </div>
+        </section>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>
+<script type="text/javascript" src="/static/js/get-books.js"></script>

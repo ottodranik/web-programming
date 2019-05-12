@@ -1,0 +1,248 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main class="column">
+      <div>
+        <section class="actions">
+          <h2 class="title">Table</h2>
+          <table>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+          </table>
+        </section>
+        <section class="content">
+          <h2 class="title">Darts</h2>
+          <div>
+            Result value:
+            <span id="darts-result">0</span>
+          </div>
+          <div class="darts" id="darts">
+            <span class="circle-text">1</span>
+            <span class="circle-text">2</span>
+            <span class="circle-text">3</span>
+            <span class="circle-text">4</span>
+            <span class="circle-text">5</span>
+            <span class="circle-text">6</span>
+            <span class="circle-text">7</span>
+            <span class="circle-text">8</span>
+            <span class="circle-text">9</span>
+            <span class="circle-text">10</span>
+            <span class="circle-text">11</span>
+            <span class="circle-text">12</span>
+            <span class="circle-text">13</span>
+            <span class="circle-text">14</span>
+            <span class="circle-text">15</span>
+            <span class="circle-text">16</span>
+            <span class="circle-text">17</span>
+            <span class="circle-text">18</span>
+            <span class="circle-text">19</span>
+            <span class="circle-text">20</span>
+          </div>
+        </section>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>
+<script>
+
+// Calculate side z with the cosine rule
+// z2 = 115^2 + 115^2 – 2×115×115 cos(45)
+// z2 = 115^2 + 115^2 – 2×115×115 cos(18)
+// z = 88.0172
+
+// // Calculate side x using the sine rule
+// sin(45) = x/115
+// x = 81,3173
+
+// // Calculate side y using Mr. Pythagoras’ theorem
+// 81,31732 + y2 = 88.01722
+// y = 33.6827
+
+const values = [20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 6, 16, 8, 11, 14, 9, 12, 5];
+
+const levels = [500, 470, 310, 280];
+
+const translate = [0, 15, 95, 110];
+
+const percentage = 0.05; // size of segment
+
+const segmentColor = [
+  ['red', 'green'],
+  ['black', 'white']
+];
+
+const mainSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+mainSvg.setAttributeNS(
+  null,
+  'style',
+  `width: 500px;
+   height: 500px;
+   transform: translate(-50%, -50%);
+   left: 50%;
+   top: 50%;
+   position: absolute;`
+)
+document.getElementById("darts").appendChild(mainSvg)
+
+levels.forEach((size, level) => {
+  const data = {
+    size,
+    sectors: []
+  };
+
+  const colorSet = segmentColor[level%2];
+
+  values.forEach((value, i) => {
+    data.sectors.push({
+      percentage: 0.05,
+      color: colorSet[i % 2],
+      text: value
+    });
+  });
+
+  segments = calculateSectors(data);
+  const segmentSvgGnt = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  segmentSvgGnt.setAttributeNS(
+    null,
+    'style',
+    `width: ${data.size}px;
+     height: ${data.size}px;
+     transform: translate(${translate[level]}px, ${translate[level]}px);
+     position: absolute;`
+  );
+  mainSvg.appendChild(segmentSvgGnt);
+
+  segments.map((sector, i) => {
+    const newSector = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    newSector.setAttributeNS(null, 'fill', sector.color);
+    newSector.setAttributeNS(null, 'stroke', 'gold');
+    newSector.setAttributeNS(null, 'stroke-width', '1px');
+    newSector.setAttributeNS(null, 'd', 'M' + sector.L + ',' + sector.L + ' L' + sector.L + ',0 A' + sector.L + ',' + sector.L + ' 1 0,1 ' + sector.X + ', ' + sector.Y + ' z');
+    newSector.setAttributeNS(null, 'transform', 'rotate(' + sector.R + ', '+ sector.L+', '+ sector.L+')');
+    segmentSvgGnt.appendChild(newSector);
+    newSector.addEventListener('click', () => {
+      let mult = 1;
+      if (level === 0) {
+        mult = 2;
+      } else if (level === 2) {
+        mult = 3;
+      }
+      const result = mult * values[i];
+      document.getElementById('darts-result').innerHTML = result;
+      console.log(result);
+    });
+  });
+});
+
+const segmentSvg25 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+segmentSvg25.setAttributeNS(null, 'cx', 250)
+segmentSvg25.setAttributeNS(null, 'cy', 250)
+segmentSvg25.setAttributeNS(null, 'r', 16)
+segmentSvg25.setAttributeNS(null, 'fill', 'green');
+segmentSvg25.setAttributeNS(null, 'stroke', 'gold');
+segmentSvg25.setAttributeNS(null, 'stroke-width', '1px');
+mainSvg.appendChild(segmentSvg25);
+segmentSvg25.addEventListener('click', () => {
+  const result = 25;
+  document.getElementById('darts-result').innerHTML = result;
+  console.log(result);
+});
+
+const segmentSvg50 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+segmentSvg50.setAttributeNS(null, 'cx', 250)
+segmentSvg50.setAttributeNS(null, 'cy', 250)
+segmentSvg50.setAttributeNS(null, 'r', 7)
+segmentSvg50.setAttributeNS(null, 'fill', 'red');
+segmentSvg50.setAttributeNS(null, 'stroke', 'gold');
+segmentSvg50.setAttributeNS(null, 'stroke-width', '1px');
+mainSvg.appendChild(segmentSvg50);
+segmentSvg50.addEventListener('click', () => {
+  const result = 50;
+  document.getElementById('darts-result').innerHTML = result;
+  console.log(result);
+})
+
+function calculateSectors(data) {
+  let sectors = [];
+  let L = data.size / 2
+  let a = 0 // Angle
+  let aRad = 0 // Angle in Rad
+  let z = 0 // Size z
+  let x = 0 // Side x
+  let y = 0 // Side y
+  let X = 0 // SVG X coordinate
+  let Y = 0 // SVG Y coordinate
+  let R = 0 // Rotation
+
+  data.sectors.map( function(item, key ) {
+    a = 360 * item.percentage;
+    aCalc = ( a > 180 ) ? 360 - a : a;
+    aRad = aCalc * Math.PI / 180;
+    z = Math.sqrt(2 * L * L - (2 * L * L * Math.cos(aRad)));
+    
+    x = aCalc <= 90
+      ? L * Math.sin(aRad)
+      : L * Math.sin((180 - aCalc) * Math.PI/180);
+    
+    y = Math.sqrt(z * z - x * x);
+    Y = y;
+
+    if (a <= 180) {
+      X = L + x;
+      arcSweep = 0;
+    } else {
+      X = L - x;
+      arcSweep = 1;
+    }
+
+    sectors.push({
+      percentage: item.percentage,
+      label: item.label,
+      color: item.color,
+      arcSweep,
+      L,
+      X,
+      Y,
+      R
+    });
+
+    R = R + a;
+  });
+
+  return sectors
+}
+
+</script>

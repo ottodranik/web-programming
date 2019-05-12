@@ -1,0 +1,23 @@
+{
+  "name": "online-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "express-session": "^1.16.1",
+    "mysql": "^2.15.0",
+    "req-flash": "0.0.3"
+  }
+}

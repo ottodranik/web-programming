@@ -1,0 +1,12 @@
+<aside class="aside-menu">
+  <ul class="menu-categories">
+    <li class="menu-title">
+      <span>Жанри</span>
+    </li>
+    <% genres.forEach((item, index) => { %>
+      <li>
+        <a href="/genre/<%= item.id %>/books"><%= item.genre_name %></a>
+      </li>
+    <% }) %>
+  </ul>
+</aside>

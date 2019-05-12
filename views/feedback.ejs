@@ -1,0 +1,55 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="feedback-cnt">
+        <h2>Форма зворотнього зв'язку</h2>
+        <form id="feedbackForm" action="/feedback/add" name="feedbackForm" class="feedback" method="POST">
+          <input
+            placeholder="Ім'я"
+            title="Введіть ваше ім'я (з великої літери)"
+            type="text"
+            name="name"
+            required
+            pattern="[A-ZА-ЯІЇ]{1}.*"
+          >
+          <input
+            placeholder="Телефон"
+            title="Телефон (тільки цифри: 10 або 12)"
+            type="text"
+            name="phone"
+            required
+            pattern="\d{10}|\d{12}"
+          >
+          <input
+            placeholder="Email"
+            title="Введіть правиільний email"
+            type="email"
+            name="email"
+            required
+          >
+          <textarea
+            placeholder="Текст"
+            name="text"
+            required
+          ></textarea>
+          <button id="submit" type="submit" onClick="onSubmit()">Відправити</button>
+        </form>
+      </div>
+      <div class="feedback-cnt">
+        <h2>Відгуки</h2>
+        <div class="feedback-item-list">
+          <% feedbacks.forEach((item, index) => { %>
+            <div class="feedback-item">
+              <div class="feedback-item_user-name">
+                <%= item.client_name %>
+                <span class="feedback-item_created-at"><%= item.created_at %></span>
+              </div>
+              <div class=""><%= item.text %></div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>

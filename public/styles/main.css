@@ -1,0 +1,615 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  display: flex;
+  min-height: calc(100vh - 250px);
+}
+
+header {
+  height: 75px;
+  background-image: url('../images/Essential-Books.jpg');
+}
+
+.site-logo {
+  width: 100%;
+  height: 100%;
+  /* background-size: 100%;
+  margin-left: -300px;
+  cursor: pointer; */
+  background: rgba(255,255,255,0.2);
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  height: 100px;
+  background-color: #424b4b;
+  border-top: 2px solid #000;
+}
+
+main {
+  display: flex;
+  width: 75%;
+  padding: 10px;
+}
+
+main.column {
+  flex-direction: column;
+}
+
+section {
+  padding: 10px;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 20px 10px;
+}
+
+.main-left {
+  width: 75%;
+}
+
+.main-right {
+  width: 25%;
+  margin-top: 10px;
+}
+
+section.content {
+  min-height: 300px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Marks */
+section.marks {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  padding-right: 0;
+}
+
+.mark-block {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 2px #ccc;
+  border-radius: 10px;
+}
+
+.mark-block-content {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.mark-block img {
+  width: 100px;
+}
+
+.mark-block-title {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.mark-block-date {
+  font-size: 10px;
+}
+
+/* Menu */
+ul.menu-categories {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  list-style-type: none;
+  box-shadow: 0px 0px 1px #333;
+}
+
+ul.menu-categories li {
+  display: block;
+  color: #333;
+  vertical-align: middle;
+}
+
+ul.menu-categories li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+ul.menu-categories li:hover {
+  background-color: rgb(67, 83, 94);
+  color: #fff;
+}
+
+ul.menu-categories li.menu-title {
+  color: #fff;
+  background-color: rgb(21, 98, 96);
+  padding: 20px;
+  text-transform: uppercase;
+}
+
+/* Nav */
+nav {
+  height: 40px;
+  background-color: rgb(21, 98, 96);
+  display: flex;
+  justify-content: flex-start;
+}
+
+nav a, nav span {
+  min-width: 150px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  margin: 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav .auth-link {
+  flex: 1 0;
+  justify-content: flex-end;
+}
+
+nav .auth-link a {
+  min-width: auto;
+  margin: 0;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table td {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+
+table tr:first-child td {
+  border-top: none;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tr td:first-child {
+  border-left: none;
+}
+
+table tr td:last-child {
+  border-right: none;
+}
+
+/* Form */
+
+.feedback-cnt {
+  width: 50%;
+  padding: 10px;
+}
+
+.feedback-cnt:last-child {
+  padding-right: 0;
+  padding-left: 10px;
+}
+
+form.feedback,
+form.signup,
+form.signin {
+  display: flex;
+  flex-direction: column;
+}
+
+form input, form textarea {
+  height: 40px;
+  margin: 5px 0;
+  min-width: 150px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+form textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+form button {
+  margin-top: 5px;
+  color: #fff;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  min-width: 100px;
+  font-size: 14px;
+  background-color: rgb(37, 162, 37);
+}
+
+form button:disabled {
+  background-color: rgb(37, 162, 37, 0.5);
+}
+
+.error {
+  border-color: red;
+}
+
+form.submitted input:invalid,
+form.submitted textarea:invalid {
+  border-color: red;
+}
+form.submitted input:valid,
+form.submitted textarea:valid {
+  border-color: green;
+}
+
+.feedback-item {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.feedback-item_user-name {
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.feedback-item_created-at {
+  font-style: italic;
+  margin-left: 20px;
+}
+
+/* Form Signup */
+
+.login-cnt {
+  width: 100%;
+}
+
+form.signup, form.signin {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+form.signup input, form.signin input {
+  width: 80%;
+}
+
+form.signup .controls, form.signin .controls {
+  text-align: right;
+}
+
+form label {
+  display: flex;
+  align-items: center;
+}
+
+form label .field-input input {
+  width: 100%;
+} 
+form label .field-input {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+form label .field-label {
+  width: 200px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+form .msg {
+  background-color: #fdfdfd;
+  border: 1px solid green;
+  margin: 20px 0;
+  padding: 15px;
+  font-weight: bold;
+}
+
+form .msg.error-msg {
+  border: 1px solid red;
+}
+
+
+/* Book */
+.content-books {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.single-book-cnt {
+  display: flex;
+  width: 33%;
+  /* height: 100px; */
+  padding: 5px;
+  font-size: 14px;
+}
+
+.single-book_image {
+  min-width: 90px;
+  background-size: cover;
+  background-position: 50%;
+  border: 1px solid #333;
+}
+
+.single-book_text {
+  color: #333;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.single-book_link {
+  color: #000;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.single-book_descr {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.single-book_already, .single-book_already-mark {
+  font-weight: bold;
+  padding: 3px;
+  margin-top: 5px;
+  font-size: 12px;
+  display: block;
+  width: max-content;
+}
+
+.single-book_already {
+  border: 1px solid green;
+  color: green;
+}
+
+.single-book_already-mark {
+  border: 1px solid rgb(16, 132, 186);;
+  color: rgb(16, 132, 186);;
+}
+
+.book-description {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.book-header button.book-buy {
+  margin: 0;
+  margin-left: 20px;
+}
+
+.book-header h2 {
+  margin-bottom: 2px;
+}
+
+.book-header .single-book_already {
+  margin-left: 20px;
+}
+
+.book-header {
+  display: flex;
+  align-items: center;
+}
+
+button.book-buy, button.book-mark, button.book-unmark {
+  margin: 5px 0;
+  padding: 5px;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+button.book-buy {
+  background-color: rgb(37, 162, 37);
+}
+
+button.book-mark {
+  background-color: rgb(16, 132, 186);
+}
+
+button.book-unmark {
+  background-color: rgb(147, 125, 26);
+}
+
+.book-small-text {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+/* Gallery */
+.selected_img{
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid #ccc;
+}
+
+.selected_img img{
+  width: 100%;
+  height: auto;
+}
+
+.image_list {
+  margin: 0;
+  padding: 0;
+}
+
+.image_list li {
+  width: 33.33%;
+  display: inline-block;
+  max-height: 250px;
+  border: 1px solid #ccc;
+}
+
+.image_list li:first-child {
+  border-left: 1px solid #ccc;
+}
+
+.image_list li img {
+  width: 100%;
+  height: auto;
+}
+
+.selected_img p {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  margin: 0;
+  padding: 5px 10px;
+}
+.image_list p {
+  display: none;
+}
+
+/* Filters */
+.content-filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  padding-bottom: 20px;
+  border: 1px dashed #ccc;
+}
+
+.content-filters h2 {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 20px 20px 0px;
+}
+
+.content-filters_group {
+  margin-top: 10px;
+  padding: 0 20px;
+}
+.content-filters_group:last-child {
+  margin-bottom: 10px;
+}
+
+.content-filters_group_row {
+  margin: 5px 0;
+}
+
+.content-filters_group input {
+  margin: 0 10px 0 0;
+}
+
+.content-filters_group input[type="number"] {
+  width: 35px;
+  padding: 5px;
+}
+
+@media (max-width: 1400px) { 
+  .single-book-cnt {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1100px) { 
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+  main {
+    flex-direction: column;
+    width: 100%;
+  }
+  aside {
+    width: 100%;
+    padding-bottom: 0px;
+    padding-top: 10px;
+  }
+  .main-left, .main-right {
+    width: 100%;
+    border: none;
+  }
+  .main-right {
+    order: -1;
+    margin: 0;
+  }
+  .main-right section.marks {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 0 0;
+  }
+  .main-right section.marks .mark-block {
+    margin-right: 10px;
+  }
+  .main-right section.marks .mark-block:last-child {
+    margin-right: 0;
+  }
+  section.news {
+    flex-direction: row;
+  }
+  .main-right section.marks,
+  section.actions,
+  section.content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  ul.menu-categories {
+    border: 1px solid #efefef;
+    box-shadow: none;
+  }
+  .content-filters {
+    flex-direction: row;
+    padding-bottom: 10px;
+  }
+  .content-filters h2 {
+    padding-top: 10px;
+  }
+  .feedback-cnt:last-child {
+    padding: 0;
+    padding-top: 10px;
+  }
+  .feedback-cnt {
+    width: 100%;
+    padding: 0;
+  }
+  .single-book-cnt {
+    width: 33%;
+  }
+}

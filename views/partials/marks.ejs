@@ -1,0 +1,12 @@
+<section class="marks">
+  <% lastMarks.forEach((mark, index) => { %>
+    <div class="mark-block">
+      <h3 class="mark-block-title">Оцінка: <%= mark.mark_value %></h3>
+      <h3 class="mark-block-title">Книга: <%= mark.book_name %></h3>
+      <span class="mark-block-date"><%= mark.updated_at %></span>
+      <div class="mark-block-content">
+        <span class="mark-block-user">Від <%= mark.email %></span>
+      </div>
+    </div>
+  <% }) %>
+</section>

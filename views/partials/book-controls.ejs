@@ -1,0 +1,20 @@
+<% if (subscriptions.indexOf(item.id) === -1) {%>
+  <button onClick="subscript(<%= item.id %>)" class="book-buy">Підписка</button>
+<% } else {%>
+  <span class="single-book_already">ви вже підписані</span>
+<% }%>
+<% if (!item.mark_value) {%>
+  <div>
+    <select id="mark_<%= item.id %>">
+      <option value="5" selected>5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
+    </select>
+    <button onClick="setMark(<%= item.id %>, 'mark_<%= item.id %>')" class="book-mark">Оцінити</button>
+  </div>
+<% } else {%>
+  <span class="single-book_already-mark">ви поставили: <%= item.mark_value%></span>
+  <button onClick="unsetMark(<%= item.id %>)" class="book-unmark">Відмінити?</button>
+<% }%>

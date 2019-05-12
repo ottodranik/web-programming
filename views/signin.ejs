@@ -1,0 +1,42 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="login-cnt">
+        <h2>Форма авторизації</h2>
+        <form id="signinForm" action="/auth/signin" name="signinForm" class="signin" method="POST">
+          <label>
+            <span class="field-label">Email:</span>
+            <input
+              title="Введіть email"
+              type="email"
+              name="email"
+              required
+              pattern="[A-Za-z]{1}.*"
+            >
+          </label>
+          <label>
+            <span class="field-label">Пароль:</span>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              required
+            >
+          </label>
+          <div class="controls">
+            <button id="submit" type="submit">Авторизуватися</button>
+          </div>
+          <% if(message.text) { %>
+            <div class="msg <%= message.is_error ? 'error-msg' : '' %>">
+              <%= message.text %>
+            </div>
+          <% }%>
+          <div>
+            <a href="/signup">Зареєструйтеся, якщо у вас ще немає аккаунта.</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>

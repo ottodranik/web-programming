@@ -1,0 +1,35 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="main-left">
+        <section class="content">
+          <h2 class="title">Каталог: <%= currentGenre ? currentGenre.genre_name : ''%></h2>
+          <div class="content-books" id="book-list">
+            <% include partials/book-list.ejs %>
+          </div>
+        </section>
+      </div>
+      <div class="main-right">
+        <div class="content-filters">
+          <h2>Фільтри</h2>
+          <div class="content-filters_group" id="filter-authors">
+            Автори:
+            <% authors.forEach((author, index) => { %>
+              <div class="content-filters_group_row">
+                <input type="checkbox" value="<%= author.id%>">
+                <span><%= author.author_name%></span>
+              </div>
+            <% }) %>
+          </div>
+          <div class="content-filters_group">
+            <div class="content-filters_group_row">
+              Оцінка не менше за: <input id="filter-mark" type="number" value="1" max="5" min="1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>
+<script type="text/javascript" src="/static/js/get-books.js"></script>

@@ -1,0 +1,21 @@
+<% include partials/header.ejs %>
+  <div class="wrapper">
+    <main>
+      <div class="main-left">
+        <section class="actions">
+          <%- include partials/gallery.ejs %>
+        </section>
+        <section class="content">
+          <h2 class="title">Останні надходження</h2>
+          <div class="content-books" id="book-list">
+            <% include partials/book-list.ejs %>
+          </div>
+        </section>
+      </div>
+      <div class="main-right">
+        <% include partials/marks.ejs %>
+      </div>
+    </main>
+    <% include partials/menu.ejs %>
+  </div>
+<% include partials/footer.ejs %>

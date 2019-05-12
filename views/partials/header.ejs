@@ -1,0 +1,36 @@
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Web Programming</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <meta name="keywords" content="<% keywords.forEach((item, index) => { %><%= item.tag_name %>,<% }) %>">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles/main.css?v=1.0">
+  <link rel="stylesheet" href="/static/styles/darts_svg.css?v=1.0">
+</head>
+
+<body>
+  <header>
+    <div class="site-logo"></div>
+  </header>
+  <nav>
+    <% pages.forEach((item, index) => { %>
+      <a title="<%= item.description %>" href="/<%= item.url %>"><%= item.page_name %></a>
+    <% }) %>
+    <% if(!user) { %>
+      <a class="auth-link" title="Авторизація користувача" href="/signin">Авторизація</a>
+    <% } else { %>
+      <span class="auth-link">
+        <span>Привіт, <%= user.name || user.email %>!</span>
+        <a title="Вийти" href="/signout">Вихід</a>
+      </span>
+    <% } %>
+  </nav>
+  
