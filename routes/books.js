@@ -1,5 +1,9 @@
 const { pagesQuery, genresQuery, authorsQuery } = require('./shared');
 
+const createSQLforAuthors = (authors) => {
+  return authors.split(',').map((author, i) => (i === 0 ? "" : " OR ")+"author_id = "+author).join(" ");
+}
+
 module.exports = {
   getBooks: (req, res) => {
     const isAjaxRequest = req.xhr || req.headers.accept.indexOf('json') > -1;
@@ -7,7 +11,7 @@ module.exports = {
     const user_id = req.session.user ? req.session.user.id : 0;
     const keywordsQuery = "SELECT * FROM `keywords` WHERE page_id="+currentPage+";";
     const booksQuery = "\
-        SELECT b.*, a.author_name, g.genre_name"+ (user_id ? ', m.mark_value' : '') +"\
+        SELECT b.*, GROUP_CONCAT(DISTINCT a.author_name) as author_name, GROUP_CONCAT(DISTINCT g.genre_name) as genre_name"+ (user_id ? ', m.mark_value' : '') +"\
         FROM `books` AS `b`\
         INNER JOIN `books_authors` AS `ba` ON b.id = ba.book_id\
         INNER JOIN `authors` AS `a` ON ba.author_id = a.id\
@@ -16,8 +20,9 @@ module.exports = {
         "+ (user_id ? " LEFT JOIN `marks` AS `m` ON b.id = m.book_id AND m.user_id = '"+user_id+"'": "")+"\
         WHERE b.status = 1\
         "+ (req.params.genre_id ? " AND genre_id = '"+req.params.genre_id+"'" : "")+"\
-        "+ (req.query.authors ? " AND author_id IN ('"+req.query.authors+"')" : "")+"\
+        "+ (req.query.authors ? " AND ("+createSQLforAuthors(req.query.authors)+")" : "")+"\
         "+ (req.query.mark ? " AND average_mark >= '"+req.query.mark+"'" : "")+"\
+        GROUP BY b.id\
         ORDER BY b.created_at DESC\
     ;";
 
@@ -61,7 +66,7 @@ module.exports = {
     const keywordsQuery = "SELECT * FROM `keywords` WHERE page_id=1;";
     const user_id = req.session.user ? req.session.user.id : 0;
     const bookQuery = "\
-        SELECT b.*, a.author_name, g.genre_name "+ (user_id ? ', m.mark_value' : '') +"\
+        SELECT b.*, GROUP_CONCAT(DISTINCT a.author_name) as author_name, GROUP_CONCAT(DISTINCT g.genre_name) as genre_name"+ (user_id ? ', m.mark_value' : '') +"\
         FROM `books` AS `b`\
         INNER JOIN `books_authors` AS `ba` ON b.id = ba.book_id\
         INNER JOIN `authors` AS `a` ON ba.author_id = a.id\
@@ -70,6 +75,7 @@ module.exports = {
         "+ (user_id ? " LEFT JOIN `marks` AS `m` ON b.id = m.book_id AND m.user_id = '"+user_id+"'": "")+"\
         WHERE b.status = 1\
         AND b.id = "+req.params.book_id+"\
+        GROUP BY b.id\
         ORDER BY b.created_at DESC\
     ;";
 

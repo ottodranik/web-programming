@@ -6,12 +6,15 @@ module.exports = {
         const keywordsQuery = "SELECT * FROM `keywords` WHERE page_id="+currentPage+";";
         const user_id = req.session.user ? req.session.user.id : 0;
         const lastBooksQuery = "\
-            SELECT b.*, a.author_name "+ (user_id ? ', m.mark_value' : '') +"\
+            SELECT b.*, GROUP_CONCAT(DISTINCT a.author_name) as author_name, GROUP_CONCAT(DISTINCT g.genre_name) as genre_name"+ (user_id ? ', m.mark_value' : '') +"\
             FROM `books` AS `b`\
             INNER JOIN `books_authors` AS `ba` ON b.id = ba.book_id\
             INNER JOIN `authors` AS `a` ON ba.author_id = a.id\
+            INNER JOIN `books_genres` AS `bg` ON b.id = bg.book_id\
+            INNER JOIN `genres` AS `g` ON bg.genre_id = g.id\
             "+ (user_id ? " LEFT JOIN `marks` AS `m` ON b.id = m.book_id AND m.user_id = '"+user_id+"'": "")+"\
             WHERE b.status = 1\
+            GROUP BY b.id\
             ORDER BY b.created_at DESC\
             LIMIT 5\
         ;";

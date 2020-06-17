@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./app.js",
+    "import": "node ./dump/import_db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,5 +21,9 @@
     "express-session": "^1.16.1",
     "mysql": "^2.15.0",
     "req-flash": "0.0.3"
+  },
+  "devDependencies": {
+    "mysql-import": "^4.0.24",
+    "node-mysql-import": "^1.1.0"
   }
 }
